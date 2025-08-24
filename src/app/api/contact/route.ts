@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-// Tipos mínimos da resposta do Resend (suficiente para checarmos erro)
+// Tipos mínimos da resposta do Resend
 type ResendErr = { name?: string; message?: string };
 type SendEmailResponse = { data?: { id: string } | null; error?: ResendErr | null };
 
@@ -34,9 +34,13 @@ export async function POST(req: Request) {
       email?: string;
       company?: string;
       message?: string;
+      hp?: string; // opcional, se usar honeypot no form
     };
 
-    const { name, email, company, message } = body;
+    const { name, email, company, message, hp } = body;
+
+    // honeypot opcional: se vier preenchido, não envia
+    if (hp) return NextResponse.json({ success: true });
 
     if (!name || !email || !message) {
       return NextResponse.json(
@@ -51,7 +55,7 @@ export async function POST(req: Request) {
     const result: SendEmailResponse = await resend.emails.send({
       from,
       to,
-      replyTo: email, // camelCase correto no SDK
+      replyTo: email,
       subject: `Contato – LicitaPro${company ? ` (${company})` : ""}`,
       html: `
         <h2>Novo contato pelo site</h2>
