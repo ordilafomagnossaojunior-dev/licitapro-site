@@ -1,16 +1,19 @@
-// Força Node.js (não Edge) e evita qualquer cache
+// Garante Node.js e evita cache da rota
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-// (opcional, perto de você) export const preferredRegion = "gru1";
 
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const apiKey = process.env.RESEND_API_KEY;
-const to = process.env.CONTACT_EMAIL_TO;
+// Tipos mínimos da resposta do Resend (suficiente para checarmos erro)
+type ResendErr = { name?: string; message?: string };
+type SendEmailResponse = { data?: { id: string } | null; error?: ResendErr | null };
 
 export async function POST(req: Request) {
   try {
+    const apiKey = process.env.RESEND_API_KEY;
+    const to = process.env.CONTACT_EMAIL_TO;
+
     if (!apiKey) {
       console.error("[contact] faltando RESEND_API_KEY");
       return NextResponse.json(
@@ -26,12 +29,14 @@ export async function POST(req: Request) {
       );
     }
 
-    const { name, email, company, message } = (await req.json()) as {
+    const body = (await req.json()) as {
       name?: string;
       email?: string;
       company?: string;
       message?: string;
     };
+
+    const { name, email, company, message } = body;
 
     if (!name || !email || !message) {
       return NextResponse.json(
@@ -41,13 +46,12 @@ export async function POST(req: Request) {
     }
 
     const resend = new Resend(apiKey);
-
     const from = process.env.CONTACT_FROM ?? "LicitaPro <onboarding@resend.dev>";
 
-    const result = await resend.emails.send({
+    const result: SendEmailResponse = await resend.emails.send({
       from,
       to,
-      replyTo: email, // ok com o SDK (camelCase)
+      replyTo: email, // camelCase correto no SDK
       subject: `Contato – LicitaPro${company ? ` (${company})` : ""}`,
       html: `
         <h2>Novo contato pelo site</h2>
@@ -59,22 +63,18 @@ export async function POST(req: Request) {
       `,
     });
 
-    // Se a API do Resend devolver erro, mostramos
-    if ((result as any)?.error) {
-      console.error("[contact] resend error:", (result as any).error);
+    if (result.error) {
+      console.error("[contact] resend error:", result.error);
       return NextResponse.json(
-        { success: false, error: (result as any).error?.message ?? "Erro no Resend" },
+        { success: false, error: result.error.message ?? "Erro no Resend" },
         { status: 502 }
       );
     }
 
     return NextResponse.json({ success: true });
-  } catch (err: unknown) {
+  } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
     console.error("[contact] exception:", msg);
-    return NextResponse.json(
-      { success: false, error: msg },
-      { status: 500 }
-    );
+    return NextResponse.json({ success: false, error: msg }, { status: 500 });
   }
 }
