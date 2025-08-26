@@ -5,9 +5,24 @@ export const dynamic = "force-dynamic";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-// Tipos mínimos da resposta do Resend
-type ResendErr = { name?: string; message?: string };
-type SendEmailResponse = { data?: { id: string } | null; error?: ResendErr | null };
+/** Payload esperado do formulário */
+type ContactBody = {
+  name?: string;
+  email?: string;
+  company?: string;
+  message?: string;
+  /** honeypot anti-bot (campo escondido no form) */
+  hp?: string;
+};
+
+/** Estrutura mínima de erro que o Resend devolve */
+type ResendError = { name?: string; message?: string };
+
+/** Estrutura mínima da resposta do Resend */
+type SendResult = {
+  data?: { id: string } | null;
+  error?: ResendError | null;
+};
 
 export async function POST(req: Request) {
   try {
@@ -29,17 +44,11 @@ export async function POST(req: Request) {
       );
     }
 
-    const body = (await req.json()) as {
-      name?: string;
-      email?: string;
-      company?: string;
-      message?: string;
-      hp?: string; // opcional, se usar honeypot no form
-    };
-
+    // Tipamos o body para não usar `any`
+    const body: ContactBody = await req.json();
     const { name, email, company, message, hp } = body;
 
-    // honeypot opcional: se vier preenchido, não envia
+    // Honeypot preenchido => ignora (finge sucesso)
     if (hp) return NextResponse.json({ success: true });
 
     if (!name || !email || !message) {
@@ -50,9 +59,10 @@ export async function POST(req: Request) {
     }
 
     const resend = new Resend(apiKey);
-    const from = process.env.CONTACT_FROM ?? "LicitaPro <onboarding@resend.dev>";
+    const from =
+      process.env.CONTACT_FROM ?? "LicitaPro <noreply@updates.licitapro.pro>";
 
-    const result: SendEmailResponse = await resend.emails.send({
+    const result: SendResult = await resend.emails.send({
       from,
       to,
       replyTo: email,
@@ -76,8 +86,8 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json({ success: true });
-  } catch (err) {
-    const msg = err instanceof Error ? err.message : String(err);
+  } catch (error) {
+    const msg = error instanceof Error ? error.message : String(error);
     console.error("[contact] exception:", msg);
     return NextResponse.json({ success: false, error: msg }, { status: 500 });
   }
