@@ -1,28 +1,31 @@
-// Garante Node.js e evita cache da rota
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-/** Payload esperado do formulário */
+// ---- Tipagem segura do corpo ----
 type ContactBody = {
-  name?: string;
-  email?: string;
+  name: string;
+  email: string;
   company?: string;
-  message?: string;
-  /** honeypot anti-bot (campo escondido no form) */
+  message: string;
   hp?: string;
 };
 
-/** Estrutura mínima de erro que o Resend devolve */
-type ResendError = { name?: string; message?: string };
+function isContactBody(x: unknown): x is ContactBody {
+  if (!x || typeof x !== "object") return false;
+  const r = x as Record<string, unknown>;
+  return (
+    typeof r.name === "string" &&
+    typeof r.email === "string" &&
+    typeof r.message === "string"
+  );
+}
 
-/** Estrutura mínima da resposta do Resend */
-type SendResult = {
-  data?: { id: string } | null;
-  error?: ResendError | null;
-};
+// ---- Tipagem do retorno do Resend ----
+type ResendErr = { name?: string; message?: string } | null | undefined;
+type SendEmailResponse = { data?: { id: string } | null; error?: ResendErr };
 
 export async function POST(req: Request) {
   try {
@@ -36,6 +39,7 @@ export async function POST(req: Request) {
         { status: 500 }
       );
     }
+
     if (!to) {
       console.error("[contact] faltando CONTACT_EMAIL_TO");
       return NextResponse.json(
@@ -44,25 +48,33 @@ export async function POST(req: Request) {
       );
     }
 
-    // Tipamos o body para não usar `any`
-    const body: ContactBody = await req.json();
-    const { name, email, company, message, hp } = body;
+    const raw = await req.json();
+    if (!isContactBody(raw)) {
+      return NextResponse.json(
+        { success: false, error: "Corpo inválido." },
+        { status: 400 }
+      );
+    }
 
-    // Honeypot preenchido => ignora (finge sucesso)
+    const { name, email, company, message, hp } = raw;
+
+    // honeypot opcional
     if (hp) return NextResponse.json({ success: true });
 
     if (!name || !email || !message) {
       return NextResponse.json(
-        { success: false, error: "Campos obrigatórios: nome, e-mail e mensagem." },
+        {
+          success: false,
+          error: "Campos obrigatórios: nome, e-mail e mensagem.",
+        },
         { status: 400 }
       );
     }
 
     const resend = new Resend(apiKey);
-    const from =
-      process.env.CONTACT_FROM ?? "LicitaPro <noreply@updates.licitapro.pro>";
+    const from = process.env.CONTACT_FROM ?? "LicitaPro <onboarding@resend.dev>";
 
-    const result: SendResult = await resend.emails.send({
+    const result = (await resend.emails.send({
       from,
       to,
       replyTo: email,
@@ -75,19 +87,19 @@ export async function POST(req: Request) {
         <p><strong>Mensagem:</strong></p>
         <p>${(message ?? "").replace(/\n/g, "<br/>")}</p>
       `,
-    });
+    })) as SendEmailResponse;
 
     if (result.error) {
+      const msg =
+        (typeof result.error === "object" && result.error?.message) ||
+        "Erro no Resend";
       console.error("[contact] resend error:", result.error);
-      return NextResponse.json(
-        { success: false, error: result.error.message ?? "Erro no Resend" },
-        { status: 502 }
-      );
+      return NextResponse.json({ success: false, error: msg }, { status: 502 });
     }
 
     return NextResponse.json({ success: true });
-  } catch (error) {
-    const msg = error instanceof Error ? error.message : String(error);
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : "Erro desconhecido";
     console.error("[contact] exception:", msg);
     return NextResponse.json({ success: false, error: msg }, { status: 500 });
   }
