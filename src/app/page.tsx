@@ -233,7 +233,7 @@ export default function Page() {
           <div>
             <p className="font-semibold">Contato</p>
             <ul className="mt-2 space-y-1 text-gray-600">
-              <li>contato@licitapro.com.br</li>
+              <li>contato@licitapro.pro</li>
               <li>Brasil • Atendimento nacional</li>
             </ul>
           </div>
