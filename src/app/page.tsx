@@ -21,6 +21,7 @@ export default function Page() {
             <a href="#servicos" className="hover:text-primary-700">Serviços</a>
             <a href="#diferenciais" className="hover:text-primary-700">Diferenciais</a>
             <a href="#processo" className="hover:text-primary-700">Como atuamos</a>
+            <a href="/para-empresas" className="hover:text-gray-700">Empresas</a>
             <a href="#contato" className="hover:text-primary-700">Contato</a>
           </nav>
           <a
@@ -233,7 +234,7 @@ export default function Page() {
           <div>
             <p className="font-semibold">Contato</p>
             <ul className="mt-2 space-y-1 text-gray-600">
-              <li>contato@licitapro.pro</li>
+              <li><a href="mailto:contato@licitapro.pro">contato@licitapro.pro</a></li>
               <li>Brasil • Atendimento nacional</li>
             </ul>
           </div>
