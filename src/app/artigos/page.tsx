@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 // ⚠️ Import RELATIVO (saindo de app/artigos -> app -> src -> components)
-import DownloadCTA from "../../components/DownloadCTA";
+import DownloadCTA from "../components/DownloadCTA";
 
 export const metadata: Metadata = {
   title: "Artigos | LicitaPro",
