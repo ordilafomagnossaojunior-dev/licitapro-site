@@ -2,59 +2,69 @@
 import Link from "next/link";
 
 export default function SiteFooter() {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="mt-16 border-t">
-      <div className="mx-auto max-w-6xl px-4 py-10 grid gap-10 md:grid-cols-3">
+    <footer className="border-t bg-white">
+      <div className="mx-auto max-w-6xl px-4 py-10 grid gap-8 md:grid-cols-3">
+        {/* Coluna 1 – Marca */}
         <div>
-          <h3 className="font-semibold text-lg">LicitaPro</h3>
-          <p className="mt-2 text-gray-600">
-            Excelência técnica e segurança jurídica em licitações públicas.
-          </p>
+          {/* ✅ para rotas internas use Link */}
+          <Link href="/" className="flex items-center gap-3">
+            <div className="h-9 w-9 rounded-full bg-[#173A8C] grid place-items-center font-bold text-white">
+              LP
+            </div>
+            <div>
+              <div className="font-semibold">LicitaPro</div>
+              <div className="text-sm text-gray-600">
+                Excelência técnica e segurança jurídica em licitações públicas.
+              </div>
+            </div>
+          </Link>
         </div>
 
-        <div>
-          <h4 className="font-semibold">Links</h4>
-          <ul className="mt-2 space-y-2 text-gray-700">
+        {/* Coluna 2 – Links */}
+        <nav className="text-gray-800">
+          <div className="font-semibold mb-2">Links</div>
+          <ul className="space-y-2">
             <li>
-              <Link href="/#servicos" className="hover:text-primary-700">
+              <Link href="/#servicos" className="hover:underline">
                 Serviços
               </Link>
             </li>
             <li>
-              <Link href="/#como-atuamos" className="hover:text-primary-700">
+              <Link href="/#como-atuamos" className="hover:underline">
                 Como atuamos
               </Link>
             </li>
             <li>
-              <Link href="/#contato" className="hover:text-primary-700">
+              <Link href="/contact" className="hover:underline">
                 Contato
               </Link>
             </li>
             <li>
-              <Link href="/para-empresas" className="hover:text-primary-700">
-                Empresas
+              <Link href="/para-empresas" className="hover:underline">
+                Para empresas
               </Link>
             </li>
           </ul>
-        </div>
+        </nav>
 
+        {/* Coluna 3 – Contato */}
         <div>
-          <h4 className="font-semibold">Contato</h4>
-          <p className="mt-2 text-gray-700">
-            <a
-              href="mailto:contato@licitapro.pro"
-              className="hover:text-primary-700"
-            >
+          <div className="font-semibold mb-2">Contato</div>
+          <div className="space-y-2 text-gray-800">
+            {/* Para e-mail/telefone pode usar <a> normalmente */}
+            <a href="mailto:contato@licitapro.pro" className="hover:underline">
               contato@licitapro.pro
             </a>
-            <br />
-            Brasil • Atendimento nacional
-          </p>
+            <div>Brasil • Atendimento nacional</div>
+          </div>
         </div>
       </div>
 
-      <div className="border-t py-6 text-center text-sm text-gray-500">
-        © {new Date().getFullYear()} LicitaPro. Todos os direitos reservados.
+      <div className="border-t py-6 text-center text-sm text-gray-600">
+        © {year} LicitaPro. Todos os direitos reservados.
       </div>
     </footer>
   );
