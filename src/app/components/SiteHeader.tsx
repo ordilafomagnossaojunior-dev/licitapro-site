@@ -43,6 +43,13 @@ export default function SiteHeader() {
           ))}
 
           {/* Link fixo para a página de Empresas */}
+          <Link 
+            href="/artigos" 
+            className="hover:text-primary-700"
+          >
+            Artigos
+          </Link>
+
           <Link
             href="/para-empresas"
             className="hover:text-primary-700 font-semibold"
