@@ -1,248 +1,202 @@
+// src/app/page.tsx
+import Link from "next/link";
 import ContactForm from "./components/ContactForm";
 
-export default function Page() {
+export default function HomePage() {
   return (
-    <div className="min-h-screen bg-white text-gray-900">
-      {/* Header */}
-      <header className="border-b sticky top-0 z-50 bg-white/80 backdrop-blur">
-        <div className="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="h-9 w-9 rounded-2xl bg-primary-900 text-white grid place-items-center font-bold">
-              LP
-            </div>
-            <div className="leading-tight">
-              <p className="font-semibold text-lg">LicitaPro</p>
-              <p className="text-xs text-gray-500 -mt-0.5">
-                Assessoria técnica e jurídica em licitações
-              </p>
-            </div>
-          </div>
-          <nav className="hidden md:flex items-center gap-6 text-sm">
-            <a href="#servicos" className="hover:text-primary-700">Serviços</a>
-            <a href="#diferenciais" className="hover:text-primary-700">Diferenciais</a>
-            <a href="#processo" className="hover:text-primary-700">Como atuamos</a>
-            <a href="/para-empresas" className="hover:text-gray-700">Empresas</a>
-            <a href="#contato" className="hover:text-primary-700">Contato</a>
-          </nav>
-          <a
-            href="#contato"
-            className="inline-flex items-center justify-center rounded-2xl border border-primary-900 px-4 py-2 text-sm font-medium hover:bg-primary-900 hover:text-white transition focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
-          >
-            Fale conosco
-          </a>
+    <main className="mx-auto max-w-6xl px-4 pb-20">
+      {/* HERO */}
+      <section className="pt-10 md:pt-14">
+        <div className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs text-gray-700">
+          <span className="inline-block h-2 w-2 rounded-full bg-primary-600" />
+          Conformidade total com a Lei nº 14.133/2021
         </div>
-      </header>
 
-      {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="mx-auto max-w-7xl px-4 py-20 grid lg:grid-cols-2 gap-10 items-center">
+        <div className="mt-6 grid gap-10 md:grid-cols-2 md:items-center">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-primary-200 px-3 py-1 text-xs mb-4">
-              <span className="h-2 w-2 rounded-full bg-primary-600" />
-              Conformidade total com a Lei nº 14.133/2021
-            </div>
-            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
-              Segurança jurídica e eficiência em{" "}
-              <span className="underline decoration-4 decoration-primary-700">licitações</span>
+            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
+              Segurança jurídica e
+              <br />
+              eficiência em{" "}
+              <span className="underline decoration-4 decoration-primary-600">
+                licitações
+              </span>
             </h1>
-            <p className="mt-5 text-lg text-gray-600">
-              Do ETP ao contrato: estudos técnicos, TR, matriz de riscos, análise de preços
-              e defesa do interesse público — com rigor jurídico e visão prática de mercado.
+
+            <p className="mt-5 max-w-xl text-lg text-gray-700">
+              Do ETP ao contrato: estudos técnicos, TR, matriz de riscos,
+              análise de preços e defesa do interesse público — com rigor
+              jurídico e visão prática de mercado.
             </p>
-            <div className="mt-8 flex flex-col sm:flex-row gap-3">
-              <a
-                href="#contato"
-                className="rounded-2xl bg-primary-600 text-white px-5 py-3 text-sm font-semibold hover:bg-primary-700 transition focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="/#contato"
+                className="rounded-2xl bg-primary-600 px-6 py-3 text-sm text-white font-semibold hover:bg-primary-700 text-center"
               >
                 Solicitar proposta
-              </a>
-              <a
-                href="#servicos"
-                className="rounded-2xl border border-primary-200 px-5 py-3 text-sm font-semibold hover:border-primary-600 transition"
+              </Link>
+
+              <Link
+                href="/#servicos"
+                className="rounded-2xl border px-6 py-3 text-sm font-semibold hover:bg-gray-50 text-center"
               >
                 Ver serviços
-              </a>
+              </Link>
             </div>
 
-            {/* faixa institucional (compromisso em vermelho) */}
-            <div className="mt-6 rounded-xl bg-danger-50 border border-danger-200 p-4 text-sm text-danger-700">
-              Compromisso com legalidade, transparência e defesa do interesse público.
-            </div>
+            <p className="mt-6 rounded-xl border bg-red-50 px-4 py-3 text-sm text-red-800">
+              Compromisso com legalidade, transparência e defesa do interesse
+              público.
+            </p>
           </div>
 
-          <div className="relative">
-            <div className="aspect-[4/3] w-full rounded-3xl border border-primary-200 shadow-sm p-6">
-              <div className="h-full w-full rounded-2xl bg-primary-50 grid place-items-center text-center px-6">
-                <div>
-                  <p className="text-sm uppercase tracking-wide text-gray-500">Licitações públicas</p>
-                  <h3 className="text-2xl font-semibold mt-1">
-                    ETP • TR • Análise de Riscos • Pesquisa de Preços • Editais • Contratos
-                  </h3>
-                  <p className="mt-3 text-gray-600">
-                    Modelos e entregáveis claros, prontos para auditoria. Foco em economicidade e integridade.
-                  </p>
-                </div>
-              </div>
-            </div>
+          <div className="rounded-3xl border bg-gradient-to-br from-white to-blue-50 p-6 md:p-8">
+            <h3 className="text-center text-sm font-semibold text-gray-600">
+              LICITAÇÕES PÚBLICAS
+            </h3>
+            <p className="mt-4 text-center text-2xl font-semibold">
+              ETP • TR • Análise de Riscos • Pesquisa de Preços • Editais •
+              Contratos
+            </p>
+            <p className="mt-4 text-gray-700 text-center">
+              Modelos e entregáveis claros, prontos para auditoria. Foco em
+              economicidade e integridade.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Serviços */}
-      <section id="servicos" className="mx-auto max-w-7xl px-4 py-16">
-        <h2 className="text-3xl font-bold">Serviços</h2>
-        <p className="mt-2 text-gray-600 max-w-3xl">
-          Consultoria ponta a ponta com base na Lei nº 14.133/2021, IN SEGES/ME nº 65/2021 e jurisprudência do TCU/TCE.
+      {/* SERVIÇOS */}
+      <section id="servicos" className="mt-16">
+        <h2 className="text-2xl font-bold">Serviços</h2>
+        <p className="mt-2 max-w-2xl text-gray-700">
+          Acompanhe o ciclo completo da contratação — do planejamento à execução
+          contratual.
         </p>
-        <div className="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <div className="mt-6 grid gap-6 md:grid-cols-3">
           {[
             {
-              title: "Estudo Técnico Preliminar (ETP)",
-              desc: "Diagnóstico de necessidade, alternativas, justificativas e análise de viabilidade com base legal e melhores práticas.",
+              t: "Planejamento",
+              d: "ETP, TR e matriz de riscos com base técnica sólida e aderência normativa.",
             },
             {
-              title: "Termo de Referência (TR)",
-              desc: "Descrição do objeto, requisitos de desempenho e qualidade, critérios de medição e pagamento e matriz de avaliação.",
+              t: "Seleção do fornecedor",
+              d: "Análise de editais, impugnações, diligências e suporte jurídico durante o certame.",
             },
             {
-              title: "Análise de Riscos",
-              desc: "Identificação, classificação e tratamento de riscos conforme art. 18, §1º, VI da Lei 14.133 e IN 65/2021.",
-              danger: true,
+              t: "Contratos e execução",
+              d: "Minutas, termos de referência e conformidade ao longo do vínculo.",
             },
-            {
-              title: "Pesquisa de Preços e Orçamentação",
-              desc: "Metodologias saneadas, mercado comparado, economia de escala e documentação para auditoria.",
-            },
-            {
-              title: "Gestão de Editais e Contratos",
-              desc: "Elaboração, revisão e blindagem jurídica de minutas, aditivos e termos de referência.",
-            },
-            {
-              title: "Defesas e Pareceres",
-              desc: "Pareceres técnicos e jurídicos, respostas a pedidos de esclarecimento e defesas perante controle externo.",
-            },
-          ].map((s) => (
-            <div
-              key={s.title}
-              className={`rounded-3xl border p-6 hover:shadow-sm transition ${
-                s.danger ? "border-danger-200 bg-danger-50/40" : ""
-              }`}
-            >
-              <h3 className={`font-semibold text-lg ${s.danger ? "text-danger-700" : ""}`}>{s.title}</h3>
-              <p className={`mt-2 text-sm ${s.danger ? "text-danger-600" : "text-gray-600"}`}>{s.desc}</p>
+          ].map((c) => (
+            <div key={c.t} className="rounded-2xl border p-6">
+              <h3 className="text-lg font-semibold">{c.t}</h3>
+              <p className="mt-2 text-gray-700">{c.d}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Diferenciais */}
-      <section id="diferenciais" className="bg-gray-50">
-        <div className="mx-auto max-w-7xl px-4 py-16">
-          <h2 className="text-3xl font-bold">Diferenciais</h2>
-          <div className="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6 text-sm">
-            {[
-              { h: "Rigor jurídico", p: "Aplicação estrita da Lei 14.133/2021 e alinhamento com TCU/TCE." },
-              { h: "Entregáveis auditáveis", p: "Documentos padronizados, referências legais e trilhas de decisão." },
-              { h: "Agilidade com qualidade", p: "Prazos realistas e comunicação transparente." },
-              { h: "Foco em economicidade", p: "Análises de mercado e formação de preços com critérios saneados." },
-              { h: "Gestão de riscos", p: "Mapeamento, mitigação e monitoramento contínuo." },
-              { h: "Suporte contínuo", p: "Acompanhamento de impugnações, recursos e auditorias." },
-            ].map((d) => (
-              <div key={d.h} className="rounded-3xl border p-6 bg-white">
-                <h3 className="font-semibold">{d.h}</h3>
-                <p className="mt-2 text-gray-600">{d.p}</p>
-              </div>
-            ))}
-          </div>
+      {/* DIFERENCIAIS */}
+      <section id="diferenciais" className="mt-16">
+        <h2 className="text-2xl font-bold">Diferenciais</h2>
+        <p className="mt-2 max-w-2xl text-gray-700">
+          Entregáveis auditáveis, prazos realistas e visão de resultado para o
+          órgão e a sociedade.
+        </p>
+
+        <div className="mt-6 grid gap-6 md:grid-cols-3">
+          {[
+            {
+              t: "Rigor jurídico + prática",
+              d: "Aplicação consistente da Lei 14.133/2021 sem perder objetividade.",
+            },
+            {
+              t: "Transparência total",
+              d: "Fluxos claros, templates versionados e trilha de auditoria.",
+            },
+            {
+              t: "Time responsivo",
+              d: "Atendimento ágil, comunicação simples e compromisso com prazos.",
+            },
+          ].map((c) => (
+            <div key={c.t} className="rounded-2xl border p-6">
+              <h3 className="text-lg font-semibold">{c.t}</h3>
+              <p className="mt-2 text-gray-700">{c.d}</p>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* Processo */}
-      <section id="processo" className="mx-auto max-w-7xl px-4 py-16">
-        <h2 className="text-3xl font-bold">Como atuamos</h2>
-        <ol className="mt-8 grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-sm">
+      {/* COMO ATUAMOS */}
+      <section id="como-atuamos" className="mt-16">
+        <h2 className="text-2xl font-bold">Como atuamos</h2>
+        <p className="mt-2 max-w-2xl text-gray-700">
+          Passo a passo transparente — do kickoff à entrega final.
+        </p>
+
+        <ol className="mt-6 grid gap-6 md:grid-cols-4">
           {[
-            { n: 1, t: "Imersão e diagnóstico", p: "Briefing, levantamento de requisitos e definição de objetivos." },
-            { n: 2, t: "Estratégia e planejamento", p: "Matriz de riscos, cronograma e governança do processo." },
-            { n: 3, t: "Produção técnica", p: "ETP, TR, pesquisa de preços e minutas com base legal." },
-            { n: 4, t: "Acompanhamento", p: "Suporte em sessão pública, impugnações, recursos e auditorias." },
-          ].map((x) => (
-            <li key={x.t} className="rounded-3xl border p-6">
-              <div className="h-9 w-9 rounded-full bg-primary-900 text-white grid place-items-center font-semibold">
-                {x.n}
-              </div>
-              <h3 className="mt-4 font-semibold">{x.t}</h3>
-              <p className="mt-2 text-gray-600">{x.p}</p>
+            { n: 1, t: "Kickoff", d: "Alinhamento de escopo, prazos e responsáveis." },
+            { n: 2, t: "Execução", d: "Produção técnica e jurídica com checkpoints." },
+            { n: 3, t: "Validação", d: "Ajustes finais e validação com a equipe interna." },
+            { n: 4, t: "Entrega", d: "Documentos prontos para auditoria e continuidade." },
+          ].map((s) => (
+            <li key={s.n} className="rounded-2xl border p-6">
+              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary-600 text-sm font-bold text-white">
+                {s.n}
+              </span>
+              <h3 className="mt-3 text-lg font-semibold">{s.t}</h3>
+              <p className="mt-1 text-gray-700">{s.d}</p>
             </li>
           ))}
         </ol>
       </section>
 
-      {/* Depoimentos (placeholder) */}
-      <section className="bg-gray-50">
-        <div className="mx-auto max-w-7xl px-4 py-16">
-          <h2 className="text-3xl font-bold">O que dizem nossos clientes</h2>
-          <div className="mt-8 grid md:grid-cols-2 gap-6 text-sm">
-            {[1, 2].map((i) => (
-              <div key={i} className="rounded-3xl border p-6 bg-white">
-                <p className="italic text-gray-700">
-                  “Texto de depoimento do cliente será inserido aqui. Resultados, economia gerada e segurança jurídica.”
-                </p>
-                <p className="mt-3 font-semibold">Nome do Cliente</p>
-                <p className="text-gray-500">Cargo • Órgão/Empresa</p>
-              </div>
-            ))}
+      {/* CTA PARA EMPRESAS */}
+      <section className="mt-16 rounded-3xl border bg-gradient-to-br from-white to-gray-50 p-6 md:p-10">
+        <div className="grid gap-6 md:grid-cols-2 md:items-center">
+          <div>
+            <h2 className="text-2xl font-bold">
+              Empresas que vendem para o governo
+            </h2>
+            <p className="mt-2 text-gray-700">
+              Radar de editais, impugnações, propostas, recursos e gestão do
+              contrato — sob medida.
+            </p>
+          </div>
+
+          <div className="flex gap-3 md:justify-end">
+            <Link
+              href="/para-empresas"
+              className="rounded-2xl bg-primary-600 px-6 py-3 text-sm font-semibold text-white hover:bg-primary-700"
+            >
+              Ver soluções para Empresas
+            </Link>
+
+            <Link
+              href="/downloads/checklist-14133.pdf"
+              className="rounded-2xl border px-6 py-3 text-sm font-semibold hover:bg-gray-50"
+            >
+              Baixar checklist 14.133
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* CTA / Contato */}
-      <section id="contato" className="mx-auto max-w-7xl px-4 py-16">
-        <div className="rounded-3xl border p-8 md:p-12 grid md:grid-cols-2 gap-8 items-center">
-          <div>
-            <h2 className="text-3xl font-bold">Pronto para elevar suas contratações públicas?</h2>
-            <p className="mt-3 text-gray-600">
-              Envie uma mensagem com sua necessidade. Responderemos com um plano objetivo, cronograma e orçamento.
-            </p>
-            <ul className="mt-4 text-sm text-gray-600 list-disc pl-5 space-y-1">
-              <li>Conformidade com Lei nº 14.133/2021</li>
-              <li>Metodologia auditável e transparente</li>
-              <li>Entrega ágil com padrão profissional</li>
-            </ul>
-          </div>
+      {/* CONTATO */}
+      <section id="contato" className="mt-16">
+        <h2 className="text-2xl font-bold">Fale conosco</h2>
+        <p className="mt-2 max-w-2xl text-gray-700">
+          Envie sua necessidade. Respondemos com um plano objetivo, cronograma e
+          orçamento.
+        </p>
+
+        <div className="mt-6 rounded-2xl border p-6 md:p-8">
           <ContactForm />
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="border-t">
-        <div className="mx-auto max-w-7xl px-4 py-10 grid md:grid-cols-3 gap-8 text-sm">
-          <div>
-            <p className="font-semibold">LicitaPro</p>
-            <p className="mt-2 text-gray-600">
-              Excelência técnica e segurança jurídica em licitações públicas.
-            </p>
-          </div>
-          <div>
-            <p className="font-semibold">Links</p>
-            <ul className="mt-2 space-y-1 text-gray-600">
-              <li><a href="#servicos" className="hover:text-primary-700">Serviços</a></li>
-              <li><a href="#processo" className="hover:text-primary-700">Como atuamos</a></li>
-              <li><a href="#contato" className="hover:text-primary-700">Contato</a></li>
-            </ul>
-          </div>
-          <div>
-            <p className="font-semibold">Contato</p>
-            <ul className="mt-2 space-y-1 text-gray-600">
-              <li><a href="mailto:contato@licitapro.pro">contato@licitapro.pro</a></li>
-              <li>Brasil • Atendimento nacional</li>
-            </ul>
-          </div>
-        </div>
-        <div className="text-center text-xs text-gray-500 pb-8">
-          © {new Date().getFullYear()} LicitaPro. Todos os direitos reservados.
-        </div>
-      </footer>
-    </div>
+    </main>
   );
 }
