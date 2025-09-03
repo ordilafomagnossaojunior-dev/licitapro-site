@@ -76,45 +76,46 @@ export default function SiteHeader() {
 
       {/* Menu mobile (FORÇANDO texto escuro no claro) */}
       {open && (
-        <div className="md:hidden border-t border-gray-200 bg-white dark:border-brand-800 dark:bg-brand-900">
-          <nav className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3">
-            {links.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className="py-2 text-base font-medium text-gray-900 transition-colors hover:text-primary-700 dark:text-gray-100 dark:hover:text-primary-300"
-              >
-                {l.label}
-              </Link>
-            ))}
+  <div className="md:hidden border-t border-gray-200 bg-white dark:border-brand-800 dark:bg-brand-900">
+    {/* 🔽 FORÇA cor base em TODO o conteúdo do menu */}
+    <nav className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3 text-gray-900 dark:text-gray-100">
+      {links.map((l) => (
+        <Link
+          key={l.href}
+          href={l.href}
+          onClick={() => setOpen(false)}
+          className="py-2 text-base font-medium hover:text-primary-700 dark:hover:text-primary-300"
+        >
+          {l.label}
+        </Link>
+      ))}
 
-            <Link
-              href="/artigos"
-              onClick={() => setOpen(false)}
-              className="py-2 text-base font-medium text-gray-900 transition-colors hover:text-primary-700 dark:text-gray-100 dark:hover:text-primary-300"
-            >
-              Artigos
-            </Link>
+      <Link
+        href="/artigos"
+        onClick={() => setOpen(false)}
+        className="py-2 text-base font-medium hover:text-primary-700 dark:hover:text-primary-300"
+      >
+        Artigos
+      </Link>
 
-            <Link
-              href="/para-empresas"
-              onClick={() => setOpen(false)}
-              className="py-2 text-base font-semibold text-gray-900 transition-colors hover:text-primary-700 dark:text-gray-100 dark:hover:text-primary-300"
-            >
-              Empresas
-            </Link>
+      <Link
+        href="/para-empresas"
+        onClick={() => setOpen(false)}
+        className="py-2 text-base font-semibold hover:text-primary-700 dark:hover:text-primary-300"
+      >
+        Empresas
+      </Link>
 
-            <Link
-              href="/#contato"
-              onClick={() => setOpen(false)}
-              className="mt-2 inline-block rounded-2xl border border-gray-300 px-5 py-2 text-sm font-semibold text-gray-900 transition-colors hover:bg-gray-50 dark:border-brand-700 dark:text-gray-100 dark:hover:bg-brand-800"
-            >
-              Fale conosco
-            </Link>
-          </nav>
-        </div>
-      )}
+      <Link
+        href="/#contato"
+        onClick={() => setOpen(false)}
+        className="mt-2 inline-block rounded-2xl border border-gray-300 px-5 py-2 text-sm font-semibold hover:bg-gray-50 dark:border-brand-700 dark:hover:bg-brand-800"
+      >
+        Fale conosco
+      </Link>
+    </nav>
+  </div>
+)}
     </header>
   );
 }
