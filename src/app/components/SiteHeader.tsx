@@ -23,9 +23,7 @@ export default function SiteHeader() {
             LP
           </div>
           <div className="leading-5">
-            <div className="font-semibold text-gray-900 dark:text-gray-100">
-              LicitaPro
-            </div>
+            <div className="font-semibold text-gray-900 dark:text-gray-100">LicitaPro</div>
             <div className="text-xs text-gray-500 dark:text-gray-400">
               Assessoria técnica e jurídica em licitações
             </div>
@@ -76,10 +74,10 @@ export default function SiteHeader() {
         </button>
       </div>
 
-      {/* Menu mobile (força contraste em todos os links) */}
+      {/* Menu mobile (com fundo sólido) */}
       {open && (
-        <div className="md:hidden border-t border-gray-200 bg-white dark:border-brand-800 dark:bg-brand-900 [&_a]:text-gray-900 [&_a]:dark:text-gray-100">
-          <nav className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3">
+        <div className="md:hidden border-t border-gray-200 bg-gray-50 dark:border-brand-800 dark:bg-brand-900">
+          <nav className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3 text-gray-900 dark:text-gray-100">
             {links.map((l) => (
               <Link
                 key={l.href}
@@ -110,7 +108,7 @@ export default function SiteHeader() {
             <Link
               href="/#contato"
               onClick={() => setOpen(false)}
-              className="mt-2 inline-block rounded-2xl border border-gray-300 px-5 py-2 text-sm font-semibold hover:bg-gray-50 dark:border-brand-700 dark:hover:bg-brand-800"
+              className="mt-2 inline-block rounded-2xl border border-gray-300 px-5 py-2 text-sm font-semibold hover:bg-gray-100 dark:border-brand-700 dark:hover:bg-brand-800"
             >
               Fale conosco
             </Link>
@@ -120,4 +118,3 @@ export default function SiteHeader() {
     </header>
   );
 }
-
