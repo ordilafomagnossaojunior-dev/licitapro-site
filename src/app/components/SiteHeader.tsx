@@ -6,6 +6,7 @@ import { useState } from "react";
 
 export default function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const menuId = "mobile-nav";
 
   const links = [
     { href: "/#servicos", label: "Serviços" },
@@ -18,7 +19,7 @@ export default function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur dark:border-brand-800 dark:bg-brand-900/80">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
         {/* Logo + nome */}
-        <Link href="/" className="flex items-center gap-3">
+        <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
           <div className="grid h-9 w-9 place-items-center rounded-full bg-[#173A8C] font-bold text-white">
             LP
           </div>
@@ -67,6 +68,8 @@ export default function SiteHeader() {
         {/* Botão hambúrguer (mobile) */}
         <button
           aria-label="Abrir menu"
+          aria-expanded={open}
+          aria-controls={menuId}
           onClick={() => setOpen((s) => !s)}
           className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 text-gray-900 md:hidden dark:border-brand-700 dark:text-gray-100"
         >
@@ -74,48 +77,58 @@ export default function SiteHeader() {
         </button>
       </div>
 
-      {/* Menu mobile (FORÇANDO texto escuro no claro) */}
+      {/* Menu mobile — força cor em todos os <a> lá dentro */}
       {open && (
-  <div className="md:hidden border-t border-gray-200 bg-white dark:border-brand-800 dark:bg-brand-900">
-    {/* 🔽 FORÇA cor base em TODO o conteúdo do menu */}
-    <nav className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3 text-gray-900 dark:text-gray-100">
-      {links.map((l) => (
-        <Link
-          key={l.href}
-          href={l.href}
-          onClick={() => setOpen(false)}
-          className="py-2 text-base font-medium hover:text-primary-700 dark:hover:text-primary-300"
-        >
-          {l.label}
-        </Link>
-      ))}
+        <div className="md:hidden border-t border-gray-200 bg-white dark:border-brand-800 dark:bg-brand-900">
+          <nav
+            id={menuId}
+            className="
+              mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3
+              text-gray-900 dark:text-gray-100
+              [&_a]:text-gray-900 dark:[&_a]:text-gray-100
+              [&_a:hover]:text-primary-700 dark:[&_a:hover]:text-primary-300
+            "
+          >
+            {links.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className="py-2 text-base font-medium"
+              >
+                {l.label}
+              </Link>
+            ))}
 
-      <Link
-        href="/artigos"
-        onClick={() => setOpen(false)}
-        className="py-2 text-base font-medium hover:text-primary-700 dark:hover:text-primary-300"
-      >
-        Artigos
-      </Link>
+            <Link
+              href="/artigos"
+              onClick={() => setOpen(false)}
+              className="py-2 text-base font-medium"
+            >
+              Artigos
+            </Link>
 
-      <Link
-        href="/para-empresas"
-        onClick={() => setOpen(false)}
-        className="py-2 text-base font-semibold hover:text-primary-700 dark:hover:text-primary-300"
-      >
-        Empresas
-      </Link>
+            <Link
+              href="/para-empresas"
+              onClick={() => setOpen(false)}
+              className="py-2 text-base font-semibold"
+            >
+              Empresas
+            </Link>
 
-      <Link
-        href="/#contato"
-        onClick={() => setOpen(false)}
-        className="mt-2 inline-block rounded-2xl border border-gray-300 px-5 py-2 text-sm font-semibold hover:bg-gray-50 dark:border-brand-700 dark:hover:bg-brand-800"
-      >
-        Fale conosco
-      </Link>
-    </nav>
-  </div>
-)}
+            <Link
+              href="/#contato"
+              onClick={() => setOpen(false)}
+              className="
+                mt-2 inline-block rounded-2xl border border-gray-300 px-5 py-2 text-sm font-semibold
+                hover:bg-gray-50 dark:border-brand-700 dark:hover:bg-brand-800
+              "
+            >
+              Fale conosco
+            </Link>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
