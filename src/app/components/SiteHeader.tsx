@@ -23,7 +23,9 @@ export default function SiteHeader() {
             LP
           </div>
           <div className="leading-5">
-            <div className="font-semibold text-gray-900 dark:text-gray-100">LicitaPro</div>
+            <div className="font-semibold text-gray-900 dark:text-gray-100">
+              LicitaPro
+            </div>
             <div className="text-xs text-gray-500 dark:text-gray-400">
               Assessoria técnica e jurídica em licitações
             </div>
@@ -49,7 +51,7 @@ export default function SiteHeader() {
             Artigos
           </Link>
 
-        <Link
+          <Link
             href="/para-empresas"
             className="font-semibold text-gray-900 transition-colors hover:text-primary-700 dark:text-gray-100 dark:hover:text-primary-300"
           >
@@ -74,17 +76,16 @@ export default function SiteHeader() {
         </button>
       </div>
 
-      {/* Menu mobile */}
+      {/* Menu mobile (força contraste em todos os links) */}
       {open && (
-        <div className="md:hidden border-t border-gray-200 bg-white dark:border-brand-800 dark:bg-brand-900">
-          {/* reforço de contraste no container */}
-          <nav className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3 text-gray-900 dark:text-gray-100 [&_a]:text-gray-900 dark:[&_a]:text-gray-100">
+        <div className="md:hidden border-t border-gray-200 bg-white dark:border-brand-800 dark:bg-brand-900 [&_a]:text-gray-900 [&_a]:dark:text-gray-100">
+          <nav className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3">
             {links.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="py-2 text-base font-medium text-gray-900 hover:text-primary-700 dark:text-gray-100 dark:hover:text-primary-300"
+                className="py-2 text-base font-medium hover:text-primary-700 dark:hover:text-primary-300"
               >
                 {l.label}
               </Link>
@@ -93,7 +94,7 @@ export default function SiteHeader() {
             <Link
               href="/artigos"
               onClick={() => setOpen(false)}
-              className="py-2 text-base font-medium text-gray-900 hover:text-primary-700 dark:text-gray-100 dark:hover:text-primary-300"
+              className="py-2 text-base font-medium hover:text-primary-700 dark:hover:text-primary-300"
             >
               Artigos
             </Link>
@@ -101,7 +102,7 @@ export default function SiteHeader() {
             <Link
               href="/para-empresas"
               onClick={() => setOpen(false)}
-              className="py-2 text-base font-semibold text-gray-900 hover:text-primary-700 dark:text-gray-100 dark:hover:text-primary-300"
+              className="py-2 text-base font-semibold hover:text-primary-700 dark:hover:text-primary-300"
             >
               Empresas
             </Link>
@@ -109,7 +110,7 @@ export default function SiteHeader() {
             <Link
               href="/#contato"
               onClick={() => setOpen(false)}
-              className="mt-2 inline-block rounded-2xl border border-gray-300 px-5 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-50 dark:border-brand-700 dark:text-gray-100 dark:hover:bg-brand-800"
+              className="mt-2 inline-block rounded-2xl border border-gray-300 px-5 py-2 text-sm font-semibold hover:bg-gray-50 dark:border-brand-700 dark:hover:bg-brand-800"
             >
               Fale conosco
             </Link>
@@ -119,3 +120,4 @@ export default function SiteHeader() {
     </header>
   );
 }
+
