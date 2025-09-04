@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
+    "lightningcss": "1.25.1",
     "next": "15.5.0",
     "next-mdx-remote": "^5.0.0",
     "react": "19.1.0",
