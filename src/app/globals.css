@@ -2,89 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ... seus estilos globais abaixo ... */
+/* ---------------------------
+   Reset e estilos globais
+----------------------------*/
 
-/* Tailwind v4 */
-@import "tailwindcss";
-
-/* Paleta institucional */
-@theme {
-  /* Azul (confiança, estratégia, CTA) */
-  --color-primary-50:  #eff6ff;
-  --color-primary-100: #dbeafe;
-  --color-primary-200: #bfdbfe;
-  --color-primary-300: #93c5fd;
-  --color-primary-400: #60a5fa;
-  --color-primary-500: #3b82f6;
-  --color-primary-600: #2563eb;
-  --color-primary-700: #1d4ed8;
-  --color-primary-800: #1e40af;
-  --color-primary-900: #1e3a8a;
-
-  /* Vermelho (seriedade, compromisso) */
-  --color-danger-50:  #fef2f2;
-  --color-danger-100: #fee2e2;
-  --color-danger-200: #fecaca;
-  --color-danger-300: #fca5a5;
-  --color-danger-400: #f87171;
-  --color-danger-500: #ef4444;
-  --color-danger-600: #dc2626;
-  --color-danger-700: #b91c1c;
-  --color-danger-800: #991b1b;
-  --color-danger-900: #7f1d1d;
-
-  --radius-2xl: 1rem;
-  --radius-3xl: 1.25rem;
+/* Melhor renderização de fontes */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* tema claro/escuro opcional */
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Fundo padrão claro/escuro */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  @apply bg-white text-gray-900 dark:bg-brand-900 dark:text-gray-100;
 }
 
-/* === Contraste padrão para todo o site === */
-html, body {
-  /* fonte já definida pelos imports do layout */
-}
-
-body {
-  @apply bg-white text-gray-900;           /* claro no claro */
-}
-
-.dark body {
-  @apply bg-gray-950 text-gray-100;        /* claro no escuro */
-}
-
-/* Texto “suave” (subtítulos, descrições) em qualquer tema */
-.muted {
-  @apply text-gray-600 dark:text-gray-300;
-}
-
-/* Links com contraste adequado em ambos os temas */
+/* Links */
 a {
-  @apply text-gray-900 hover:text-primary-700
-         dark:text-gray-100 dark:hover:text-primary-400;
+  @apply transition-colors duration-200;
 }
 
-/* Bordas “neutras” que funcionam nos dois temas */
-.surface {
-  @apply bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-800;
+/* Ajuste para títulos */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-semibold;
 }
 
-/* Caixas com fundo destacado sempre texto claro */
-.box-strong {
-  @apply bg-primary-600 text-white;
+/* Ajuste para botões (reset simples) */
+button {
+  @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
 }
