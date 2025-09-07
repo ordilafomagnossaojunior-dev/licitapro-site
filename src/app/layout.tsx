@@ -17,6 +17,13 @@ export const metadata: Metadata = {
   title: "LicitaPro — Assessoria técnica e jurídica em licitações",
   description:
     "ETP, TR, análise de riscos, pesquisa de preços, editais e contratos. Excelência técnica com conformidade à Lei 14.133/2021.",
+      icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+  },
 };
 
 export default function RootLayout({
