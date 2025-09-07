@@ -1,105 +1,83 @@
 // src/app/page.tsx
 import Link from "next/link";
 import ContactForm from "./components/ContactForm";
+import AnimatedBackground from "./components/AnimatedBackground";
+import FeatureCards from "./components/FeatureCards";
 
 export default function HomePage() {
   return (
     <main className="mx-auto max-w-6xl px-4 pb-20">
-      {/* HERO */}
-      <section className="pt-10 md:pt-14">
-        <div className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs text-gray-700">
-          <span className="inline-block h-2 w-2 rounded-full bg-primary-600" />
-          Conformidade total com a Lei nº 14.133/2021
-        </div>
-
-        <div className="mt-6 grid gap-10 md:grid-cols-2 md:items-center">
-          <div>
-            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
-              Segurança jurídica e
-              <br />
-              eficiência em{" "}
-              <span className="underline decoration-4 decoration-primary-600">
-                licitações
-              </span>
-            </h1>
-
-            <p className="mt-5 max-w-xl text-lg text-gray-700">
-              Do ETP ao contrato: estudos técnicos, TR, matriz de riscos,
-              análise de preços e defesa do interesse público — com rigor
-              jurídico e visão prática de mercado.
-            </p>
-
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/#contato"
-                className="rounded-2xl bg-primary-600 px-6 py-3 text-sm text-white font-semibold hover:bg-primary-700 text-center"
-              >
-                Solicitar proposta
-              </Link>
-
-              <Link
-                href="/#servicos"
-                className="rounded-2xl border px-6 py-3 text-sm font-semibold hover:bg-gray-50 text-center"
-              >
-                Ver serviços
-              </Link>
-            </div>
-
-            <p className="mt-6 rounded-xl border bg-red-50 px-4 py-3 text-sm text-red-800">
-              Compromisso com legalidade, transparência e defesa do interesse
-              público.
-            </p>
+      {/* HERO com fundo tech */}
+      <AnimatedBackground>
+        <section className="pt-10 md:pt-14">
+          <div className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs text-gray-700 bg-white/70 backdrop-blur">
+            <span className="inline-block h-2 w-2 rounded-full bg-primary-600" />
+            Conformidade total com a Lei nº 14.133/2021
           </div>
 
-          <div className="rounded-3xl border bg-gradient-to-br from-white to-blue-50 p-6 md:p-8">
-            <h3 className="text-center text-sm font-semibold text-gray-600">
-              LICITAÇÕES PÚBLICAS
-            </h3>
-            <p className="mt-4 text-center text-2xl font-semibold">
-              ETP • TR • Análise de Riscos • Pesquisa de Preços • Editais •
-              Contratos
-            </p>
-            <p className="mt-4 text-gray-700 text-center">
-              Modelos e entregáveis claros, prontos para auditoria. Foco em
-              economicidade e integridade.
-            </p>
-          </div>
-        </div>
-      </section>
+          <div className="mt-6 grid gap-10 md:grid-cols-2 md:items-center">
+            <div>
+              <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
+                Segurança jurídica e
+                <br />
+                eficiência em{" "}
+                <span className="underline decoration-4 decoration-primary-600">
+                  licitações
+                </span>
+              </h1>
 
-      {/* SERVIÇOS */}
-      <section id="servicos" className="mt-16">
-        <h2 className="text-2xl font-bold">Serviços</h2>
-        <p className="mt-2 max-w-2xl text-gray-700">
-          Acompanhe o ciclo completo da contratação — do planejamento à execução
-          contratual.
-        </p>
+              <p className="mt-5 max-w-xl text-lg text-gray-700">
+                Do ETP ao contrato: estudos técnicos, TR, matriz de riscos,
+                análise de preços e defesa do interesse público — com rigor
+                jurídico e visão prática de mercado.
+              </p>
 
-        <div className="mt-6 grid gap-6 md:grid-cols-3">
-          {[
-            {
-              t: "Planejamento",
-              d: "ETP, TR e matriz de riscos com base técnica sólida e aderência normativa.",
-            },
-            {
-              t: "Seleção do fornecedor",
-              d: "Análise de editais, impugnações, diligências e suporte jurídico durante o certame.",
-            },
-            {
-              t: "Contratos e execução",
-              d: "Minutas, termos de referência e conformidade ao longo do vínculo.",
-            },
-          ].map((c) => (
-            <div key={c.t} className="rounded-2xl border p-6">
-              <h3 className="text-lg font-semibold">{c.t}</h3>
-              <p className="mt-2 text-gray-700">{c.d}</p>
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+                <Link
+                  href="/#contato"
+                  className="rounded-2xl bg-primary-600 px-6 py-3 text-sm text-white font-semibold hover:bg-primary-700 text-center"
+                >
+                  Solicitar proposta
+                </Link>
+
+                <Link
+                  href="/#servicos"
+                  className="rounded-2xl border px-6 py-3 text-sm font-semibold hover:bg-gray-50 text-center bg-white/70"
+                >
+                  Ver serviços
+                </Link>
+              </div>
+
+              <p className="mt-6 rounded-xl border bg-red-50 px-4 py-3 text-sm text-red-800">
+                Compromisso com legalidade, transparência e defesa do interesse
+                público.
+              </p>
             </div>
-          ))}
-        </div>
-      </section>
+
+            <div className="rounded-3xl border bg-gradient-to-br from-white to-blue-50 p-6 md:p-8 shadow-sm">
+              <h3 className="text-center text-sm font-semibold text-gray-600">
+                LICITAÇÕES PÚBLICAS
+              </h3>
+              <p className="mt-4 text-center text-2xl font-semibold">
+                ETP • TR • Análise de Riscos • Pesquisa de Preços • Editais •
+                Contratos
+              </p>
+              <p className="mt-4 text-gray-700 text-center">
+                Modelos e entregáveis claros, prontos para auditoria. Foco em
+                economicidade e integridade.
+              </p>
+            </div>
+          </div>
+        </section>
+      </AnimatedBackground>
+
+      {/* SERVIÇOS — agora com cards interativos e o id preservado */}
+      <div id="servicos">
+        <FeatureCards />
+      </div>
 
       {/* DIFERENCIAIS */}
-      <section id="diferenciais" className="mt-16">
+      <section id="diferenciais" className="mt-4">
         <h2 className="text-2xl font-bold">Diferenciais</h2>
         <p className="mt-2 max-w-2xl text-gray-700">
           Entregáveis auditáveis, prazos realistas e visão de resultado para o
